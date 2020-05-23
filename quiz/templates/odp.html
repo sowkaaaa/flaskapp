@@ -1,10 +1,10 @@
 <!-- quiz/templates/index.html -->
 <html>
   <head>
-    <title>Quiz Python</title>
+    <title>Wynik</title>
   </head>
 <body>
-  <h1>Quiz Python</h1>
+  <h1>🎊Twój wynik!🎊</h1>
 </body>
 </html>
 <!-- wyświetlamy komunikaty z funkcji flash -->
@@ -14,28 +14,20 @@
 	{% endfor %}
 </p>
 <!-- formularz z quizem -->
-<form method="POST" action="{{ url_for('odp') }}">
+<form method="POST">
 	<!--przgledądamy treść pytania -->
 	{% for p in pytania %}
 		<p>
-		<!-- wyświetlamy treść pytań -->
-		{{ p.pytanie }}
-		<br>
 		<!-- zapamiętujemy numer pytania licząc od zera -->
 		{% set pnr = loop.index0 %}
 		<!-- przeglądamy odpowiedzi dla danego pytania -->
 		{% for o in p.odpowiedzi %}
-			<label>
-				<!-- odpowiedzi wyświetlamy jako pole typu radio -->
-				<input type="radio" value="{{ o }}" name="{{ pnr }}">
-				{{ o }}
-			</label>
-			<br>
 			{% endfor %}
 		</p>
 	{% endfor %}
 
-	<!-- przycisk wysyłający wypełniony formularz -->
-	<input type="submit" value="Zobacz wynik" />
 
+    <!-- przycisk powrotu do formularza -->
+    <p>Powrót do Quziu:    <a href="{{ url_for('index') }}"><button type = 'button' >Quiz</button></a></p>
 </form>
+
